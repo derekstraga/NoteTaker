@@ -1,27 +1,17 @@
-// Need express to interact with front end
-const express = require("express")
-const apiRoutes = require("./routes/apiRoutes.js")
-const htmlRoutes = require("./routes/htmlRoutes.js")
+const express = require("express");
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
+
+// Initialize the app and create a port
 const app = express();
-// Sets up the Express App
-// =============================================================
-app.use(express.json());
-var PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
-// Sets up the Express app to handle data parsing
+// Set up body parsing, static, and route middleware
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-
-
-// Routes
-// =============================================================
 app.use(express.static("public"));
-// Basic route that sends the user first to the AJAX Page
 app.use("/api", apiRoutes);
-//displays tables and waiting list
 app.use("/", htmlRoutes);
 
-// Starts the server to begin listening 
-// =============================================================
-app.listen(PORT, () => console.log (`Listening on port:${PORT}`));
+// Start the server on the port
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));

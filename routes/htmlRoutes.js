@@ -1,13 +1,14 @@
-var router = require ("express").Router();
-var path = require ("path");
+var path = require("path");
+var router = require("express").Router();
 
-router.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/notes.html"));
-    console.log("first function hit");
+// "/notes" responds with the notes.html file
+router.get("/notes", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
 
-router.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+// All other routes respond with the index.html file
+router.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 module.exports = router;
